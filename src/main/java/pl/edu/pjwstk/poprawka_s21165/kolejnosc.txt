@@ -1,0 +1,4 @@
+Wpierw tworzymy klasy na podstawie (Pieniadze,Rate,Root) api https://api.nbp.pl/api/exchangerates/rates/a/USD/2012-01-01/2012-01-05/?format=json
+RestTemplateConfig oraz AverageRepo aby korzystac z wygodnych zaleznosci
+Serwis aby miec podstawowa logige jak co ma dzialac
+Kontroller aby otrzymac umozliwic komunikacje

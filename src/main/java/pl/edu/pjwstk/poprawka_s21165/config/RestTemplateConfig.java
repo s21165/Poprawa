@@ -7,7 +7,9 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestTemplateConfig {
     @Bean
-    public RestTemplate restTemplate() {
+    public RestTemplate restTemplate(){
         return new RestTemplate();
-    }     /* potrzebny aby komunikowac sie z API banku */
-}
+    }
+
+}     /* potrzebny aby komunikowac sie z API banku */
+

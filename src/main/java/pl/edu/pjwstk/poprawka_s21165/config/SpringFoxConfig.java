@@ -29,7 +29,7 @@ public class SpringFoxConfig {
                 "get currency price form NBP API",
                 "1.0",
                 null,
-                new Contact("WItold ", null,"s221165@pjwstk.edu.pl"),
+                new Contact("Witold ", null,"s221165@pjwstk.edu.pl"),
                 null,
                 null,
                 Collections.emptyList());
