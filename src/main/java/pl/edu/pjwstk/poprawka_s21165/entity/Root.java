@@ -1,6 +1,6 @@
 package pl.edu.pjwstk.poprawka_s21165.entity;
 
-
+/* aby uzyskac api w json dodajemy na koncu /?forrmat=json    https://api.nbp.pl/api/exchangerates/rates/a/USD/2012-01-01/2012-01-05/?format=json */
 
 import java.util.List;
 
