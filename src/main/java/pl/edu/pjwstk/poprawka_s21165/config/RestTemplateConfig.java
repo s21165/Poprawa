@@ -9,5 +9,5 @@ public class RestTemplateConfig {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
-    }
+    }     /* potrzebny aby komunikowac sie z API banku */
 }
