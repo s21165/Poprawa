@@ -10,7 +10,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class OblugaWyjatkow {
     @ExceptionHandler(HttpClientErrorException.NotFound.class)
     public ResponseEntity<String> notFoundHandle(HttpClientErrorException ex) {
         String bodyOfResponse = ex.getResponseBodyAsString();

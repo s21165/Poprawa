@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SpringFoxConfig {
     @Bean
-    public Docket api() {
+    public Docket api() {                   /*   swagger     */
         return new Docket(DocumentationType.OAS_30)
                 .select()
                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
@@ -25,8 +25,8 @@ public class SpringFoxConfig {
     }
     private ApiInfo info(){
         return new ApiInfo(
-                "get average price from NBP",
-                "get currency price form NBP API",
+                "Srednia z dni",
+                "średnia wartość pieniędzy na przestrzeni wybranych dni API",
                 "1.0",
                 null,
                 new Contact("Witold ", null,"s221165@pjwstk.edu.pl"),

@@ -7,27 +7,46 @@ import pl.edu.pjwstk.poprawka_s21165.entity.Root;
 import pl.edu.pjwstk.poprawka_s21165.repository.AverageRepo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service  /* "Service objects provide the client view of a Web service" tutaj bedzie logika aplikacji umozliwiajaca komunikacje, szuka @RestController, oraz @Contrroller */
 public class SerwisWalut {
-    private final RestTemplate restTemplate;
-    private final AverageRepo averageRepo;
+    private final RestTemplate restTemplate;   /* BEAN */
+    private final AverageRepo averageRepo;  /* JPA */
 
     public SerwisWalut(RestTemplate restTemplate, AverageRepo averageRepo) {
         this.restTemplate = restTemplate;
         this.averageRepo = averageRepo;
         /* dzieki temu mozemy wykorzystac korzysci plynace z RestTemplateConfig (bean) oraz AverageRepo(JpaRepository) */
     }
+
+
+
+    /*
 public  Pieniadze zapisz(String waluta, LocalDate dataOd, LocalDate dataDo, double srednia ) {
     Pieniadze pieniadze = new Pieniadze(waluta, dataOd, dataDo, srednia);
     return averageRepo.save(pieniadze);
 }
+*/
 
-    public Double getCurrency(String waluta, String dataOd, String dataDo){
-        String fooResourceUrl = String.format("http://api.nbp.pl/api/exchangerates/rates/a/%s/%s/%s/?format=json", waluta,dataOd, dataDo);
-        Root ulotnePieniazki = restTemplate.getForEntity(fooResourceUrl, Root.class).getBody();   /* wyciagamy body z zapytania (wszystko) */
+
+
+/*
+    public Pieniadze zapiszPieniedze(Pieniadze pieniadze){
+        return averageRepo.save(pieniadze);
+    }
+*/
+
+
+    public Pieniadze dajPieniadze(String waluta, String dataOd, String dataDo){
+        Root ulotnePieniazki = restTemplate.getForObject("http://api.nbp.pl/api/exchangerates/rates/a/" + waluta + "/" + dataDo + "/" + dataDo, Root.class);
+
+
+
+
+        ///Root ulotnePieniazki = restTemplate.getForEntity(fooResourceUrl, Root.class).getBody();   /* wyciagamy body z zapytania (wszystko) */
         int days = ulotnePieniazki.getRates().size(); /*wyciagamy getRates z body i liczymy ilosc elementow w tablicy getRates tym samym odzymujac wartosc dni pomiedzy dataOd dataDo */
         List<Double> wartosciWalut = new ArrayList<Double>();
         double suma = 0;
@@ -40,10 +59,10 @@ public  Pieniadze zapisz(String waluta, LocalDate dataOd, LocalDate dataDo, doub
 
         LocalDate dataFormatowanaOd = LocalDate.parse(dataOd);    /* formatujemy date */
         LocalDate dataFormatowanaDo = LocalDate.parse(dataDo);
+        Pieniadze pieniadze=new Pieniadze (ulotnePieniazki.getCurrency(),dataFormatowanaOd,dataFormatowanaDo, LocalDateTime.now(),srednia);
+        averageRepo.save(pieniadze);
 
-        Pieniadze  ulotneP = new Pieniadze(waluta, dataFormatowanaOd, dataFormatowanaDo, srednia);
-        averageRepo.save(ulotneP);          /* zapisujemy zapytanie do bazy danych */
-        return srednia;
+        return pieniadze;
     }
     public List<Pieniadze> findAll(){
         return averageRepo.findAll();

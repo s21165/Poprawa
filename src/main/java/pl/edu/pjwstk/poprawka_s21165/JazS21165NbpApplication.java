@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JazFinalApplication {
+public class JazS21165NbpApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JazFinalApplication.class, args);
+        SpringApplication.run(JazS21165NbpApplication.class, args);
     }
 
 }
