@@ -4,7 +4,7 @@ package pl.edu.pjwstk.poprawka_s21165.entity;
 
 import java.util.List;
 
-public class Root{
+public class Root {
     public String table;
     public String currency;
     public String code;
